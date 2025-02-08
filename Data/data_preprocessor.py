@@ -7,36 +7,82 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report, accuracy_score
 
 # 1. Impute Missing Values
-def impute_missing_values(data, strategy='mean'):
-    """
-    Fill missing values in the dataset.
-    :param data: pandas DataFrame
-    :param strategy: str, imputation method ('mean', 'median', 'mode')
-    :return: pandas DataFrame
-    """
-    # TODO: Fill missing values based on the specified strategy
-    pass
+# 1. Impute Missing Values
+df = pd.read_csv("C:\\Users\\sabri\\OneDrive\\Desktop\\Assignment1\\Assignment1\\Data\\messy_data.csv")
+df.head()
+
+print(df.shape)
+
+#changes values to boolean T or F, which allows us to see missing values in the dataset
+df.isnull()
+
+df.isnull().sum()
+
+#filling null values
+df2 = df.fillna(value = 0)
+print(df2)
+
+# Filling null values with previous value
+df4 = df.fillna(method = 'pad')
+print(df4)
+
+#checking for NaN in df4
+df4.isnull().sum()
+
+#Filling NaNs with mean of their column (j, n, q, u, w, z)
+df9 = df.fillna(value=df['j'].mean())
+print(df9)
+
+df10 = df.fillna(value=df['n'].mean())
+print(df10)
+
+df11 = df.fillna(value=df['q'])
+print(df11)
+
+df12 = df.fillna(value=df['u'])
+print(df12)
+
+df13 = df.fillna(value=df['w'])
+print(df13)
+
+df14 = df.fillna(value=df['z'])
+print(df14)
 
 # 2. Remove Duplicates
-def remove_duplicates(data):
-    """
-    Remove duplicate rows from the dataset.
-    :param data: pandas DataFrame
-    :return: pandas DataFrame
-    """
-    # TODO: Remove duplicate rows
-    pass
+import pandas as pd
+import ast
+
+dict = ast.literal_eval("C:\\Users\\sabri\\OneDrive\\Desktop\\Assignment1\\Assignment1\\Data\\messy_data.csv")
+df_test = data(index = idx, data=(dict))
+
+
+data = pd.DataFrame("C:\\Users\\sabri\\OneDrive\\Desktop\\Assignment1\\Assignment1\\Data\\messy_data.csv")
+
+#Using df.drop_duplicated() to remove duplicate rows
+data.drop_duplicates(inplace = True)
 
 # 3. Normalize Numerical Data
-def normalize_data(data,method='minmax'):
-    """Apply normalization to numerical features.
-    :param data: pandas DataFrame
-    :param method: str, normalization method ('minmax' (default) or 'standard')
-    """
-    # TODO: Normalize numerical data using Min-Max or Standard scaling
-    pass
+import numpy as np
 
-# 4. Remove Redundant Features   
+data = np.array("C:\\Users\\sabri\\OneDrive\\Desktop\\Assignment1\\Assignment1\\Data\\messy_data.csv")
+
+#Using Min-Max Normalization
+x_min = data.min()
+x_max = data.max()
+data_normalized = (data - x_min) / (x_max - x_min)
+
+print(data_normalized)
+
+#NOTE: I struggled a lot with my environments the last three days (utilizing PyCharm Community
+#to do the rough work of this assignment before submission, but I ran out of time and was unable to fully complete the coding
+#aspect of this assignment, as well as some short answers. My sincere apologies for this mishap. 
+
+#NOTE: My environment gave me many errors that even after careful research and consideration from online sources i could not
+#seem to correctly troubleshoot my errors. I will reach out to you for help regarding this situation so it does not
+#continue into assignment two. Many thanks! 
+# - Sabrina :) 
+
+# 4. Remove Redundant Features - UNAVAILABLE CODE
 def remove_redundant_features(data, threshold=0.9):
     """Remove redundant or duplicate columns.
     :param data: pandas DataFrame
